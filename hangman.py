@@ -34,3 +34,19 @@ def hangman():
         print('Herzlichen Glückwunsch, du hast gewonnen!')
 
 hangman()
+
+import requests
+
+def get_gas_prices(postal_code):
+    url = 'https://api.example.com/gasprices'
+    params = {'postal_code': postal_code}
+    response = requests.get(url, params=params)
+    data = response.json()
+    return data['prices']
+
+postal_code = '12345'
+prices = get_gas_prices(postal_code)
+print('Aktuelle Tankpreise für Postleitzahl {}:'.format(postal_code))
+for price in prices:
+    print('{}: {:.2f} €/L'.format(price['type'], price['price']))
+
